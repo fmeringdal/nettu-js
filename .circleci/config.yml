@@ -1,8 +1,14 @@
 version: 2.1
 orbs:
   codecov: codecov/codecov@1.1.1
-jobs:
+jobs:  
   build:
+    docker:
+      - image: circleci/node:10
     steps:
-      - codecov/upload:
-          file: coverage_report
+      - checkout
+      - run: npm install
+      - run:
+          name: "Run Jest and Collect Coverage Reports"
+          command: npm run test:coverage
+      - codecov/upload
