@@ -2,11 +2,7 @@
   "name": "@nettu/sdk",
   "version": "0.0.1",
   "description": "The Nettu Node library provides convenient access to the Nettu API from applications written in server-side JavaScript or web based applications",
-  "main": "index.js",
-  "directories": {
-    "example": "examples",
-    "lib": "lib"
-  },
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
