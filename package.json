@@ -1,0 +1,34 @@
+{
+  "name": "@nettu/sdk",
+  "version": "0.0.1",
+  "description": "The Nettu Node library provides convenient access to the Nettu API from applications written in server-side JavaScript or web based applications",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fmeringdal/nettu-sdk-js.git"
+  },
+  "contributors": [
+    "Fredrik Meringdal <fredrik@nettu.no>"
+  ],
+  "keywords": [
+    "nettu",
+    "online consulting",
+    "api",
+    "sdk",
+    "booking",
+    "calendar"
+  ],
+  "author": "Nettu <support@nettu.no> (https://nettu.no)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fmeringdal/nettu-sdk-js/issues"
+  },
+  "homepage": "https://github.com/fmeringdal/nettu-sdk-js#readme"
+}
