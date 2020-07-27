@@ -1,32 +1,32 @@
+import { BASE_URL } from "./constants";
+import { Conferences, IConferences } from "./resources/conferences/Conferences";
+import { RequestCaller } from "./services/RequestCaller";
+import { TokenStore } from "./services/TokenStore";
 
-export interface ClientAuthOptions {
-    accessToken: string; // This can be either a bearer token or a secret key
+interface INettuResources {
+    conferences: IConferences;
 }
 
-class NettuClientTokens {
+export default class NettuClient implements INettuResources {
+    
+    conferences: IConferences;
 
-    private accessToken: string;
-
-    constructor(authOptions: ClientAuthOptions){
-        if(!authOptions){
-            throw new Error("Auth options not provided");
-        }
-        if(typeof authOptions.accessToken !== "string"){
-            throw new Error("Access token not provided");
-        }
-        this.accessToken = authOptions.accessToken;
+    private constructor(resources: INettuResources){
+        // init resources
+        this.conferences = resources.conferences;
     }
 
-    getAccessToken(){
-        return this.accessToken;
-    }
-}
+    public static new(accessToken: string){
+        const authOptions = {
+            accessToken
+        };
+        const tokenStore = new TokenStore(authOptions);
+        const requestCaller = new RequestCaller(BASE_URL, tokenStore);
+        
+        const resources = {
+            conferences: new Conferences(requestCaller)
+        }
 
-export default class NettuClient {
-
-    tokens: NettuClientTokens;
-
-    constructor(authOptions: ClientAuthOptions){
-        this.tokens = new NettuClientTokens(authOptions);
+        return new NettuClient(resources)
     }
 }
