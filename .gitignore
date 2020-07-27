@@ -11,3 +11,4 @@ docs
 .DS_Store
 .idea
 codeSnippets/
+package-lock.json
