@@ -1,4 +1,6 @@
 ## Nettu Javascript Library
+==========================
+[![codecov](https://codecov.io/gh/fmeringdal/nettu-sdk-js/branch/master/graph/badge.svg)](https://codecov.io/gh/fmeringdal/nettu-sdk-js)
 
 The Nettu Node library provides convenient access to the Nettu API from applications written in server-side JavaScript or web based applications.
 
