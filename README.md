@@ -15,4 +15,4 @@ The library also provides other features. For example:
 
 ## Documentation
 
-See the [Nettu API docs](http://docs.nettu.no/).
+See the [Nettu API docs](https://docs.nettu.no/).
