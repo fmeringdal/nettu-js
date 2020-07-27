@@ -15,4 +15,4 @@ The library also provides other features. For example:
 
 ## Documentation
 
-See the [Nettu API docs](https://stripe.com/docs/api/ruby#intro).
+See the [Nettu API docs](http://docs.nettu.no/).
