@@ -17,6 +17,6 @@
       "noImplicitAny": true,
       "resolveJsonModule": true
     },
-    "include": ["lib/**/*"],
+    "include": ["lib/**/*", "test/test.ts"],
     "exclude": ["node_modules"]
   }

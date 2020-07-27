@@ -11,7 +11,7 @@ jobs:
           command: npm run test:coverage
       - run:
           name: "Install codecov globally"
-          command: npm install codecov -g
+          command: sudo npm install -g codecov
       - run:
           name: "Upload coverage"
           command: codecov
