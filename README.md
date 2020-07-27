@@ -1,4 +1,4 @@
-## Nettu Node.js Library
+## Nettu Javascript Library
 
 The Nettu Node library provides convenient access to the Nettu API from applications written in server-side JavaScript or web based applications.
 
