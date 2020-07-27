@@ -1,1 +1,3 @@
-console.log("Hello world");
+import NettuClient from "./NettuClient";
+
+export default NettuClient;
