@@ -1,10 +1,11 @@
 {
   "name": "@nettu/sdk",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "The Nettu Node library provides convenient access to the Nettu API from applications written in server-side JavaScript or web based applications",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "tsc && npm publish"
   },
   "repository": {
     "type": "git",
@@ -12,6 +13,9 @@
   },
   "contributors": [
     "Fredrik Meringdal <fredrik@nettu.no>"
+  ],
+  "files": [
+    "dist/"
   ],
   "keywords": [
     "nettu",
