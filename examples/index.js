@@ -17,7 +17,8 @@ const init = async () => {
 };
 
 const init2 = async () => {
-  const data = await client.conferences.get("5e4bfaba8f2384009be7f2c6");
+  const data = await client.conferences.listFinished();
+  console.log(data);
 };
 
 init2();

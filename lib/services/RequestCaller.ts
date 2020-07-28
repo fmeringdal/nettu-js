@@ -34,8 +34,12 @@ export class RequestCaller implements IRequestCaller {
     }
     
     async executeGraphQL(query: string, variables?: any): Promise<Result<any>> {
-        const res = await this.graphqlClient.request(query, variables);
-        return res;
+        try {
+            const res = await this.graphqlClient.request(query, variables);
+            return Result.ok<any>(res);   
+        } catch (error) {
+            return Result.fail<any>(error);   
+        }
     }
 
     async executeRest({
