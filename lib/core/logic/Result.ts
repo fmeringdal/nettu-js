@@ -1,10 +1,10 @@
 export class Result<T> {
   public isSuccess: boolean;
   public isFailure: boolean;
-  public error: T | string;
-  private _value: T;
+  public error: T | string | null;
+  private _value?: T;
 
-  public constructor(isSuccess: boolean, error?: T | string | null, value?: T) {
+  public constructor(isSuccess: boolean, error: T | string | null, value?: T) {
     if (isSuccess && error) {
       throw new Error(
         "InvalidOperation: A result cannot be successful and contain an error"
@@ -18,9 +18,7 @@ export class Result<T> {
 
     this.isSuccess = isSuccess;
     this.isFailure = !isSuccess;
-    // @ts-ignore
     this.error = error;
-    // @ts-ignore
     this._value = value;
 
     Object.freeze(this);
@@ -33,7 +31,7 @@ export class Result<T> {
       );
     }
 
-    return this._value;
+    return this._value!;
   }
 
   public errorValue(): T {

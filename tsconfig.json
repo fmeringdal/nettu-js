@@ -12,10 +12,10 @@
       "moduleResolution": "node",
       "downlevelIteration": true,
       "lib": ["es2015", "dom", "esnext.asynciterable", "es2017.object"],
-      "noUnusedLocals": true,
-      "noUnusedParameters": true,
+      "noUnusedLocals": false, // ! change this
+      "noUnusedParameters": false, // ! change this
       "noImplicitAny": true,
-      "resolveJsonModule": true
+      "resolveJsonModule": true,
     },
     "include": ["lib/**/*", "test/test.ts"],
     "exclude": ["node_modules"]

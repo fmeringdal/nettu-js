@@ -12,12 +12,21 @@ export class Conferences extends Resource
     implements IConferences {
     
     async get(conferenceId: string){
-        const res = await this.requestCaller.execute({
-            path: "/conferences/"+conferenceId
+
+        const query = `
+            query ($conferenceId: String!, $companyName: String){
+                conference(conferenceId: $conferenceId, companyName: $companyName){
+                    _id
+                }
+            }
+        `;
+
+        const res = await this.requestCaller.executeGraphQL(query, {
+            conferenceId,
+            // companyName: null
         });
-        // const conference: IConference = {
-        //     startTimeUTC: 2412421
-        // } 
+        console.log(res);
+
         return res.isFailure ? null : null;
     }
 }
