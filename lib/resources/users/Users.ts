@@ -1,6 +1,5 @@
 import Resource from "../../core/Resource";
 
-
 export interface IUsers {
     createToken(userId: string): Promise<string>
 }
@@ -16,24 +15,18 @@ export class Users extends Resource
         });
 
         if(data.isFailure){
-            throw new Error(data.errorValue());
-            
+            throw new Error(data.errorValue());   
         }
 
         return data.getValue();
     }
 
-    async createUser({
-        name,
-        email,
-        phone,
-        description
-    }: {
-        name?:string,
-        email?:string,
-        phone?:string,
-        description?:string
-    }){
+    async create({
+        name="",
+        email="",
+        phone="",
+        description=""
+    }={}){
 
         const data =  await this.requestCaller.executeRest({
             method: "POST",

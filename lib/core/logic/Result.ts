@@ -4,18 +4,7 @@ export class Result<T> {
   public error: T | string | null;
   private _value?: T;
 
-  public constructor(isSuccess: boolean, error: T | string | null, value?: T) {
-    if (isSuccess && error) {
-      throw new Error(
-        "InvalidOperation: A result cannot be successful and contain an error"
-      );
-    }
-    if (!isSuccess && !error) {
-      throw new Error(
-        "InvalidOperation: A failing result needs to contain an error message"
-      );
-    }
-
+  private constructor(isSuccess: boolean, error: T | string | null, value?: T) {
     this.isSuccess = isSuccess;
     this.isFailure = !isSuccess;
     this.error = error;

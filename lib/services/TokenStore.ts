@@ -10,8 +10,8 @@ export class TokenStore {
         if(!authOptions){
             throw new Error("Auth options not provided");
         }
-        if(typeof authOptions.accessToken !== "string"){
-            throw new Error("Access token not provided");
+        if(typeof authOptions.accessToken !== "string" || authOptions.accessToken === ""){
+            throw new Error("Access token not provided or is invalid");
         }
         this.accessToken = authOptions.accessToken;
     }

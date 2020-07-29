@@ -1,22 +1,24 @@
 import { BASE_URL } from "./constants";
-import { Conferences, IConferences } from "./resources/conferences/Conferences";
+import { Bookings, IBookings } from "./resources/bookings/Bookings";
 import { RequestCaller } from "./services/RequestCaller";
 import { TokenStore } from "./services/TokenStore";
 import { IUsers, Users } from "./resources/users/Users";
+import axios from "axios";
+import { GraphQLClient } from "graphql-request";
 
 interface INettuResources {
-    conferences: IConferences;
+    bookings: IBookings;
     users: IUsers;
 }
 
 export default class NettuClient implements INettuResources {
     
-    conferences: IConferences;
+    bookings: IBookings;
     users: IUsers;
 
     private constructor(resources: INettuResources){
         // init resources
-        this.conferences = resources.conferences;
+        this.bookings = resources.bookings;
         this.users = resources.users;
     }
 
@@ -25,10 +27,15 @@ export default class NettuClient implements INettuResources {
             accessToken
         };
         const tokenStore = new TokenStore(authOptions);
-        const requestCaller = new RequestCaller(BASE_URL, tokenStore);
+        const graphqlClient = new GraphQLClient(BASE_URL+"/graphql", {
+            headers: {
+                token: tokenStore.getAccessToken()
+            }
+        });
+        const requestCaller = new RequestCaller(BASE_URL, tokenStore, axios, graphqlClient);
         
         const resources = {
-            conferences: new Conferences(requestCaller),
+            bookings: new Bookings(requestCaller),
             users: new Users(requestCaller)
         }
 
