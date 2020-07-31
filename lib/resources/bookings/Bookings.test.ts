@@ -2,6 +2,7 @@ import { mock, reset, when, anything, instance, anyString } from "ts-mockito";
 import { Bookings } from "./Bookings";
 import { IRequestCaller, RequestCaller } from "../../services/RequestCaller";
 import { Result } from "../../core/logic/Result";
+import { IBooking } from "../../core/domain/Booking";
 
 describe("Bookings", () => {
     let requestCallerFoo: IRequestCaller = mock<IRequestCaller>();
@@ -36,5 +37,86 @@ describe("Bookings", () => {
         expect(upcomingBookings.length).toBe(returnedBookings.length);
         expect(finishedBookings.length).toBe(returnedBookings.length);
         expect(requests.length).toBe(returnedBookings.length);
+    });
+
+    
+    test("Accept booking request should return accepted booking", async() => {
+        const booking: IBooking = {
+            _id: "2421421",
+            participants: [],
+            theme: ""
+        }
+        const res = {
+            acceptConferenceRequest: booking
+        }
+        when(requestCallerFoo.executeGraphQL(anyString(), anything())).thenResolve(Result.ok<any>(res));
+        const requestCaller = instance(requestCallerFoo);
+        bookings = new Bookings(requestCaller);
+
+        const acceptedBooking = await bookings.accept(booking._id);
+        
+        expect(acceptedBooking).toEqual(booking);
+    });
+
+    
+    test("Decline booking request", async() => {
+        const booking: IBooking = {
+            _id: "2421421",
+            participants: [],
+            theme: ""
+        }
+        const res = {
+            declineConferenceRequest: true
+        }
+        when(requestCallerFoo.executeGraphQL(anyString(), anything())).thenResolve(Result.ok<any>(res));
+        const requestCaller = instance(requestCallerFoo);
+        bookings = new Bookings(requestCaller);
+
+        const operationResult = await bookings.decline(booking._id);
+        
+        expect(operationResult).toBe(res.declineConferenceRequest);
+    });
+    
+    test("Cancel an accepted booking", async() => {
+        const booking: IBooking = {
+            _id: "2421421",
+            participants: [],
+            theme: ""
+        }
+
+        const res = {
+            cancelConference: true
+        }
+
+        when(requestCallerFoo.executeGraphQL(anyString(), anything())).thenResolve(Result.ok<any>(res));
+        const requestCaller = instance(requestCallerFoo);
+        bookings = new Bookings(requestCaller);
+
+        const operationResult = await bookings.cancel(booking._id);
+        
+        expect(operationResult).toBe(res.cancelConference);
+    });
+    
+    test("Create a booking request", async() => {
+        const bookingId = "1242141"
+        const res = {
+            sendEnterpriseConferenceRequest: bookingId
+        }
+
+        when(requestCallerFoo.executeGraphQL(anyString(), anything())).thenResolve(Result.ok<any>(res));
+        const requestCaller = instance(requestCallerFoo);
+        bookings = new Bookings(requestCaller);
+        
+        const employeesFilter = {
+            tag: '2412421'
+        };
+        const req = {
+            timestampUTC: new Date().getTime(),
+            comment: "",
+            duration: 60
+        }
+        const createdBookingId = await bookings.createRequest(employeesFilter, req);
+        
+        expect(createdBookingId).toBe(res.sendEnterpriseConferenceRequest);
     });
 });
