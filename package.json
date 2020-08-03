@@ -1,7 +1,7 @@
 {
   "name": "@nettu/sdk",
   "version": "0.0.6",
-  "description": "The Nettu Node library provides convenient access to the Nettu API from applications written in server-side JavaScript or web based applications",
+  "description": "The Nettu Javascript library provides convenient access to the Nettu API from server-side JavaScript applications or web applications",
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",

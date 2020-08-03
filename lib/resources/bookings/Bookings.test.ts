@@ -12,7 +12,6 @@ describe("Bookings", () => {
         reset(requestCallerFoo);
     })
 
-
     test("List bookings, should work even if request fails", async() => {
         when(requestCallerFoo.executeGraphQL(anyString(), anything())).thenResolve(Result.fail<any>("Some Error"));
         const requestCaller = instance(requestCallerFoo);
@@ -23,7 +22,6 @@ describe("Bookings", () => {
         expect(upcomingBookings.length).toBe(0);
     });
 
-    
     test("List bookings should return bookings from request", async() => {
         const returnedBookings = [{ _id: "3123" }, { _id: "3153" }, { _id: "3129" }];
         when(requestCallerFoo.executeGraphQL(anyString(), anything())).thenResolve(Result.ok<any>({ me: { conferences: returnedBookings}}));
@@ -39,7 +37,6 @@ describe("Bookings", () => {
         expect(requests.length).toBe(returnedBookings.length);
     });
 
-    
     test("Accept booking request should return accepted booking", async() => {
         const booking: IBooking = {
             _id: "2421421",
@@ -57,7 +54,6 @@ describe("Bookings", () => {
         
         expect(acceptedBooking).toEqual(booking);
     });
-
     
     test("Decline booking request", async() => {
         const booking: IBooking = {
